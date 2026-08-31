@@ -24,14 +24,20 @@ import os
 import sys
 import uuid
 from datetime import datetime, timedelta, date
+from pathlib import Path
 from typing import Optional
 
 import caldav
 from caldav.elements import dav
+from dotenv import load_dotenv
 from icalendar import Calendar as ICalendar, Event as IEvent, Todo as ITodo
 import recurring_ical_events
 
 from mcp.server.fastmcp import FastMCP
+
+# Carica le variabili d'ambiente dal file .env nella directory del server (o via CALDAV_ENV_FILE)
+_env_path = os.environ.get("CALDAV_ENV_FILE") or (Path(__file__).resolve().parent / ".env")
+load_dotenv(dotenv_path=_env_path)
 
 mcp = FastMCP("caldav-connector")
 
@@ -48,7 +54,7 @@ def _get_env(name: str, required: bool = True, default: Optional[str] = None) ->
     if required and not value:
         raise RuntimeError(
             f"Variabile d'ambiente mancante: {name}. "
-            "Controlla la configurazione in claude_desktop_config.json."
+            "Configurala nel file .env o nelle variabili d'ambiente dell'MCP host."
         )
     return value
 
