@@ -71,7 +71,7 @@ Aggiungi la voce dentro `"mcpServers"`. Poiché le credenziali sono salvate nel 
 {
   "mcpServers": {
     "caldav": {
-      "command": "/PERCORSO/ASSOLUTO/caldav-mcp/.venv/bin/python3",
+      "command": "/PERCORSO/ASSOLUTO/caldav-mcp/.venv/bin/python",
       "args": ["/PERCORSO/ASSOLUTO/caldav-mcp/server.py"]
     }
   }
